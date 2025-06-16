@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jean 🤍</title>
+  <style>
+    /* Estilo geral do corpo da página */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #4e2a2a;
+    }
+
+    /* Container centralizado */
+    .container {
+      text-align: center;
+    }
+
+    /* Estilo dos botões */
+    button {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      background-color: #f48fb1;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 15px; /* Para dar espaço entre texto e botão */
+    }
+
+    /* Efeito hover no botão */
+    button:hover {
+      background-color: #ec407a;
+    }
+
+    /* Carta da fase intermediária (frase de dorama) */
+    .carta-intermediaria {
+      display: none;
+      margin-top: 30px;
+      background-color: #fff0f5;
+      border-radius: 16px;
+      padding: 20px 25px;
+      max-width: 500px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      text-align: center;
+    }
+
+    /* Carta final com a mensagem longa - com rolagem e borda personalizada */
+    .carta-final {
+      display: none;
+      margin-top: 30px;
+      background-color: #fff0f5;
+      border-radius: 16px;
+      padding: 20px 25px;
+      max-width: 400px;
+      max-height: 70vh;
+      overflow-y: auto; /* rolagem só nesta carta */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
+      border: 2px dotted #f48fb1; /* borda só na carta final */
+    }
+
+    /* Texto da mensagem formatado */
+    .mensagem p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      white-space: pre-wrap; /* mantém quebras de linha */
+    }
+
+    /* Decoração de corações flutuantes atrás do conteúdo */
+    .decoracao-coracoes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* os corações não bloqueiam clique */
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    /* Estilo dos corações flutuantes */
+    .decoracao-coracoes .coracao {
+      position: absolute;
+      font-size: 2em;
+      opacity: 0.4;
+      animation: flutuar 10s infinite ease-in-out;
+    }
+
+    /* Posicionamento individual dos corações */
+    .decoracao-coracoes .coracao:nth-child(1) { top: 10%; left: 20%; }
+    .decoracao-coracoes .coracao:nth-child(2) { top: 30%; left: 70%; }
+    .decoracao-coracoes .coracao:nth-child(3) { top: 50%; left: 40%; }
+    .decoracao-coracoes .coracao:nth-child(4) { top: 80%; left: 10%; }
+    .decoracao-coracoes .coracao:nth-child(5) { top: 60%; left: 80%; }
+    .decoracao-coracoes .coracao:nth-child(6) { top: 20%; left: 50%; }
+    .decoracao-coracoes .coracao:nth-child(7) { top: 75%; left: 60%; }
+    .decoracao-coracoes .coracao:nth-child(8) { top: 35%; left: 15%; }
+    .decoracao-coracoes .coracao:nth-child(9) { top: 5%; left: 90%; }
+    .decoracao-coracoes .coracao:nth-child(10) { top: 85%; left: 35%; }
+
+    /* Animação de flutuação para os corações */
+    @keyframes flutuar {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(10deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Corações decorativos flutuantes atrás do conteúdo -->
+  <div class="decoracao-coracoes">
+    <span class="coracao">💖</span>
+    <span class="coracao">💘</span>
+    <span class="coracao">💝</span>
+    <span class="coracao">💗</span>
+    <span class="coracao">💕</span>
+    <span class="coracao">💞</span>
+    <span class="coracao">❤️</span>
+    <span class="coracao">💓</span>
+    <span class="coracao">💟</span>
+    <span class="coracao">❣️</span>
+  </div>
+
+  <div class="container">
+    <!-- Botão inicial para iniciar a sequência -->
+    <button id="botaoClique" onclick="mostrarCarta()">Clique aqui</button>
+
+    <!-- Carta intermediária com frase de dorama - inicialmente oculta -->
+    <div class="carta-intermediaria" id="carta">
+      <p>“Eu não sei o que o futuro nos reserva, mas quero estar ao seu lado até o fim.”</p>
+      <button onclick="abrirMensagem()">Abra</button>
+    </div>
+
+    <!-- Carta final com a mensagem pessoal - inicialmente oculta -->
+    <div class="mensagem carta-final" id="mensagem">
+      <p>
+Jean, 
+eu nem sei direito por onde começar, porque parece que meu coração quer falar mil coisas ao mesmo tempo. Mas vou tentar colocar em palavras um pouquinho do que eu senti e ainda tô sentindo. Aquele momento no lago, de mãos dadas, seu olhar sincero, suas palavras me tocaram de um jeito que eu nunca vou esquecer. Foi como se o mundo tivesse parado por alguns minutos só pra gente existir ali, juntos, do nosso jeitinho. Eu sempre imaginei como seria gostar de alguém de verdade e agora eu sei. É ter o coração disparando quando te vejo chegar, é sorrir com qualquer mensagem sua, é ficar lembrando do seu jeito, da sua voz, dos nossos momentos e querer que eles se repitam mil vezes. Obrigada por ser tão verdadeiro comigo, por não ter medo de sentir, por fazer aquele dia tão simples se tornar um dos mais bonitos da minha vida. Eu gosto de você, Jean. Muito. E tô aqui, feliz e com o coração aberto, pra viver o que for com você, devagar, do nosso jeito, com carinho, risadas e tudo o que vier. Com carinho (e um coração bobinho e bobo por você), 
+Isa 💖
+      </p>
+      <!-- Botão para voltar ao estado inicial da página -->
+      <button onclick="voltarInicio()">Voltar ao início</button>
+    </div>
+  </div>
+
+  <script>
+    // Função que exibe a carta intermediária e oculta o botão inicial
+    function mostrarCarta() {
+      document.getElementById('carta').style.display = 'block';       // Mostrar carta com frase de dorama
+      document.getElementById('botaoClique').style.display = 'none'; // Esconder botão inicial
+    }
+
+    // Função que exibe a carta final e oculta a carta intermediária
+    function abrirMensagem() {
+      document.getElementById('mensagem').style.display = 'block';  // Mostrar carta com mensagem pessoal
+      document.getElementById('carta').style.display = 'none';      // Esconder carta intermediária
+    }
+
+    // Função que retorna à tela inicial, escondendo a carta final e mostrando o botão inicial
+    function voltarInicio() {
+      document.getElementById('mensagem').style.display = 'none';      // Esconder carta final
+      document.getElementById('botaoClique').style.display = 'inline-block'; // Mostrar botão inicial
+    }
+  </script>
+</body>
+</html>
